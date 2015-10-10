@@ -1,0 +1,21 @@
+{
+  "name": "sourcerer-mike/rmp-comfort",
+  "description": "More comfort for your page",
+  "keywords": [ "WordPress", "comfort" ],
+  "type": "wordpress-plugin",
+  "config": {
+    "bin-dir": "bin"
+  },
+  "bin": [
+    "bin/git-commit-core-update.sh",
+    "bin/git-commit-plugin-updates.sh",
+    "bin/git-commit-theme-updates.sh"
+  ],
+  "require": {
+    "php": ">=5.3",
+    "composer/installers": ">=1.0"
+  },
+  "require-dev": {
+    "sourcerer-mike/phpspec-wordpress": "dev-master"
+  }
+}
