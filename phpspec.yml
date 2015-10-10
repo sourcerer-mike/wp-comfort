@@ -1,0 +1,6 @@
+extensions: [LeMike\PhpSpec\WpExtension\Extension]
+bootstrap: tests/spec/bootstrap.php
+wp_locator:
+  spec_prefix: 'spec'
+  src_path: 'includes'
+  spec_path: 'tests/spec'
