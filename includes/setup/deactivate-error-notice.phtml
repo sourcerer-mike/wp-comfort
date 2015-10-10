@@ -1,0 +1,24 @@
+<div class="error">
+	<p>
+		<strong>
+			<?php echo sprintf(
+				__( 'Plugin "%s" can not be deactivated', COMFORT_TEXTDOMAIN ),
+				$target
+			); ?>
+		</strong>
+	</p>
+
+	<p>
+		<?php echo __( 'Please deactivate those first', COMFORT_TEXTDOMAIN ); ?>:
+	</p>
+	<ul>
+		<?php foreach ( $_GET['dependencies'] as $name ): ?>
+			<li><?php echo $name ?></li>
+		<?php endforeach ?>
+	</ul>
+	<p>
+		<strong>
+			<?php echo __( 'Be aware that some might be in use!', COMFORT_TEXTDOMAIN ); ?>
+		</strong>
+	</p>
+</div>
