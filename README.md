@@ -17,6 +17,9 @@ some neat magic will come along:
 
 ## Installation
 
+![Downloads](https://img.shields.io/github/downloads/sourcerer-mike/wp-comfort/v1.0.0/total.svg)
+![Packagist installs](https://img.shields.io/packagist/dt/sourcerer-mike/wp-comfort.svg)
+
 ### Via Composer
 
 [Get Composer and go](http://getcomposer.org):
@@ -26,15 +29,16 @@ some neat magic will come along:
 
 ## API
 
+![Issues](https://img.shields.io/github/issues/sourcerer-mike/wp-comfort.svg)
+
 Some documentation for the nerds:
 
 - [Version 1.0.* (latest)](http://sourcerer-mike.github.io/wp-comfort/api/1.0)
 
 ## Tests
 
-[![Build Status](https://travis-ci.org/sourcerer-mike/wp-comfort.svg?branch=master)](https://travis-ci.org/sourcerer-mike/wp-comfort)
-[![Coverage](http://codecov.io/github/sourcerer-mike/wp-comfort/coverage.svg?branch=master)](http://codecov.io/github/sourcerer-mike/wp-comfort?branch=master)
-
+![Build Status](https://travis-ci.org/sourcerer-mike/wp-comfort.svg?tag=v1.0.0)
+![Coverage](http://codecov.io/github/sourcerer-mike/wp-comfort/coverage.svg?tag=v1.0.0)
 
 This plugin supports all WordPress-Versions younger than a year
 (see [WP Versions](https://codex.wordpress.org/WordPress_Versions)):
