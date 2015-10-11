@@ -26,7 +26,7 @@ Install via composer and render it with phpdocumentor.
 ## Tests
 
 [![Build Status](https://travis-ci.org/sourcerer-mike/wp-comfort.svg?branch=master)](https://travis-ci.org/sourcerer-mike/wp-comfort)
-[![Coverage](http://codecov.io/github/sourcerer-mike/wp-comfort/coverage.svg?branch=master)](http://codecov.io/github/sourcerer-mike/wp-comfort?branch=develop)
+[![Coverage](http://codecov.io/github/sourcerer-mike/wp-comfort/coverage.svg?branch=master)](http://codecov.io/github/sourcerer-mike/wp-comfort?branch=master)
 
 
 This plugin supports all WordPress-Versions younger than a year
@@ -39,8 +39,9 @@ This plugin supports all WordPress-Versions younger than a year
 
 With PHP as supported by The PHP Group:
 
+- PHP 7.0 (coming mid October 2015)
 - PHP 5.6
-- PHP 5.5
+- PHP 5.5 (until 2016-07-10)
 
 If you run other versions the rest assured that your site is old,
 unstable
