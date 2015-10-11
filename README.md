@@ -26,8 +26,11 @@ Install via composer and render it with phpdocumentor.
 ## Tests
 
 [![Build Status](https://travis-ci.org/sourcerer-mike/wp-comfort.svg?branch=master)](https://travis-ci.org/sourcerer-mike/wp-comfort)
+[![Coverage](http://codecov.io/github/sourcerer-mike/wp-comfort/coverage.svg?branch=master)](http://codecov.io/github/sourcerer-mike/wp-comfort?branch=develop)
 
-This plugin supports all WordPress-Versions younger than a year:
+
+This plugin supports all WordPress-Versions younger than a year
+(see [WP Versions](https://codex.wordpress.org/WordPress_Versions)):
 
 - WordPress 4.4 (coming December 2015)
 - WordPress 4.3
