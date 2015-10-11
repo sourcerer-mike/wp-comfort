@@ -30,7 +30,7 @@ class GeneralTest extends TestCase {
 			'plugin_locale',
 			function ( $locale, $domain ) {
 				if ( $domain == $this->getPluginTextdomain() ) {
-					GeneralTest::$isDomainLoaded = true;
+					\Comfort\GeneralTest::$isDomainLoaded = true;
 				}
 
 				return $locale;
