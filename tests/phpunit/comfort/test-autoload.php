@@ -5,11 +5,23 @@ namespace Comfort;
 use org\bovigo\vfs\vfsStream;
 
 class AutoloadTest extends TestCase {
-	protected $dummyClassName;
+	protected static $backupDirectories = [ ];
+	protected        $dummyClassName;
 
 	protected function setUp() {
+		$this->setUpCleanDirectories();
 		$this->setUpCleanSpl();
 		$this->setUpClassDummy();
+	}
+
+	private function setUpCleanDirectories() {
+		static::$backupDirectories = Loader::get_directories();
+
+		$reflect = new \ReflectionClass( '\\Comfort\\Loader' );
+		$prop    = $reflect->getProperty( '_directories' );
+
+		$prop->setAccessible( true );
+		$prop->setValue( new Loader(), [ $this->getPluginDirectory() . '/includes' ] );
 	}
 
 	public function setUpCleanSpl() {
@@ -56,12 +68,31 @@ class AutoloadTest extends TestCase {
 
 	public function tearDown() {
 		$this->dummyClassName = null;
+
+		$this->tearDownCleanDirectories();
+	}
+
+	public function tearDownCleanDirectories() {
+		$reflect = new \ReflectionClass( '\\Comfort\\Loader' );
+		$prop    = $reflect->getProperty( '_directories' );
+
+		$prop->setAccessible( true );
+		$prop->setValue( new Loader(), static::$backupDirectories );
 	}
 
 	public static function tearDownAfterClass() {
 		if ( ! in_array( static::getSplTarget(), spl_autoload_functions() ) ) {
 			spl_autoload_register( static::getSplTarget() );
 		}
+	}
+
+	public function testBaseDirectoriesCanBeRegistered() {
+		$current = Loader::get_directories();
+
+		Loader::register_directory( getcwd() );
+
+		$this->assertNotEquals( $current, Loader::get_directories() );
+		$this->assertContains( getcwd(), Loader::get_directories() );
 	}
 
 	public function testLoadsClassesFromDirectories() {

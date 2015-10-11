@@ -19,12 +19,36 @@ class Loader {
 	 *
 	 * @var string[]
 	 */
-	protected static $_directories = [];
+	protected static $_directories = [ ];
 
 	/**
-	 * @var bool True, if already registered as SPL loader.
+	 * Directories where classes will be searched.
+	 *
+	 * @return \string[]
 	 */
-	protected static $_is_registered = false;
+	public static function get_directories() {
+		return static::$_directories;
+	}
+
+	/**
+	 * Search class in include path and load it.
+	 *
+	 * @param string $class_name The class name.
+	 */
+	public static function load_class( $class_name ) {
+
+		$filename = static::class_to_file( $class_name );
+
+		foreach ( static::$_directories as $namespace => $base_path ) {
+			$file_path = $base_path . DIRECTORY_SEPARATOR . $filename;
+
+			if ( ! is_readable( $file_path ) ) {
+				continue;
+			}
+
+			require_once $file_path;
+		}
+	}
 
 	/**
 	 * Turn class name into a filename.
@@ -72,23 +96,13 @@ class Loader {
 	}
 
 	/**
-	 * Search class in include path and load it.
-	 *
-	 * @param string $class_name The class name.
+	 * Register this loader.
 	 */
-	public static function load_class( $class_name ) {
+	public static function register() {
+		\spl_autoload_register(
+			array( __CLASS__, 'load_class' )
+		);
 
-		$filename = static::class_to_file( $class_name );
-
-		foreach ( static::$_directories as $namespace => $base_path ) {
-			$file_path = $base_path . DIRECTORY_SEPARATOR . $filename;
-
-			if ( ! is_readable( $file_path ) ) {
-				continue;
-			}
-
-			require_once $file_path;
-		}
 	}
 
 	/**
@@ -98,20 +112,6 @@ class Loader {
 	 */
 	public static function register_directory( $path ) {
 		static::$_directories[] = $path;
-	}
-
-	/**
-	 * Register this loader.
-	 */
-	public static function register() {
-		if ( static::$_is_registered ) {
-			return;
-		}
-
-		static::$_is_registered = \spl_autoload_register(
-			array( __CLASS__, 'load_class' )
-		);
-
 	}
 }
 
