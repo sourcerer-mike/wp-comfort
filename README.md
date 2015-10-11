@@ -25,7 +25,26 @@ Install via composer and render it with phpdocumentor.
 
 ## Tests
 
-Everything is tested with phpunit.
+[![Build Status](https://travis-ci.org/sourcerer-mike/wp-comfort.svg?branch=master)](https://travis-ci.org/sourcerer-mike/wp-comfort)
+
+This plugin supports all WordPress-Versions younger than a year:
+
+- WordPress 4.4 (coming December 2015)
+- WordPress 4.3
+- WordPress 4.2
+- WordPress 4.1 (until 2015-12-17)
+
+With PHP as supported by The PHP Group:
+
+- PHP 5.6
+- PHP 5.5
+
+If you run other versions the rest assured that your site is old,
+unstable
+and will be hacked soon.
+Contact me if you don't like that feeling: pretzlaw@gmail.com
+
+
 
 ## License
 
