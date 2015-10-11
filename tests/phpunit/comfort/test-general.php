@@ -41,6 +41,43 @@ class GeneralTest extends TestCase {
 
 		do_action( 'plugins_loaded' );
 
-		$this->assertTrue(static::$isDomainLoaded);
+		$this->assertTrue( static::$isDomainLoaded );
+	}
+
+	public function test_registers_autoload_for_classes() {
+
+		// Given the loader is not registered
+		foreach ( spl_autoload_functions() as $target ) {
+			if ( ! is_array( $target ) ) {
+				continue;
+			}
+
+			if ( ! is_object( $target[0] ) ) {
+				continue;
+			}
+
+			if ( $target[0] instanceof Loader ) {
+				spl_autoload_unregister( $target );
+			}
+		}
+
+		// And the loader status is cleaned-up
+		$class = new \ReflectionClass( '\\Comfort\\Loader' );
+		$prop  = $class->getProperty( '_is_registered' );
+		$prop->setAccessible( true );
+		$prop->setValue( new Loader(), false );
+
+		$target = [ 'Comfort\\Loader', 'load_class' ];
+		$this->assertFalse( $prop->getValue( new Loader() ) );
+		$this->assertNotContains( $target, spl_autoload_functions() );
+
+		// When I register the autoload
+		Loader::register();
+
+		// Then it shall have such status
+		$this->assertTrue( $prop->getValue( new Loader() ) );
+
+		// And the SPL autoload functions contain the loader.
+		$this->assertContains( $target, spl_autoload_functions() );
 	}
 }
