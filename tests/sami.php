@@ -13,7 +13,6 @@ $versions = \Sami\Version\GitVersionCollection::create(dirname(__DIR__))
 $config = new Sami\Sami(
 	__DIR__ . '/../includes',
 	[
-		'theme' => 'Symfony',
 		'versions' => $versions,
 		'title' => 'Comfort',
 		'build_dir' => COMFORT_DIR . '/var/sami/%version%',
