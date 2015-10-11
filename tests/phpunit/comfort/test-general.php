@@ -15,6 +15,15 @@ class GeneralTest extends TestCase {
 		;
 	}
 
+	public function testItWontFailOnDoubleLoad() {
+		$this->assertTrue( defined( 'COMFORT_DIR' ) );
+		$this->assertTrue( defined( 'COMFORT_FILE' ) );
+		$this->assertTrue( defined( 'COMFORT_TEXTDOMAIN' ) );
+
+		require $this->getPluginFile();
+
+	}
+
 	public function test_load_own_textdomain_after_plugins_are_loaded() {
 		GeneralTest::$isDomainLoaded = false;
 

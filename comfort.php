@@ -10,9 +10,17 @@ Text Domain: comfort
 Domain Path: /languages
 */
 
-define( 'COMFORT_DIR', __DIR__ );
-define( 'COMFORT_FILE', __FILE__ );
-define( 'COMFORT_TEXTDOMAIN', basename( __DIR__ ) );
+if ( ! defined( 'COMFORT_DIR' ) ) {
+	define( 'COMFORT_DIR', __DIR__ );
+}
+
+if ( ! defined( 'COMFORT_FILE' ) ) {
+	define( 'COMFORT_FILE', __FILE__ );
+}
+
+if ( ! defined( 'COMFORT_TEXTDOMAIN' ) ) {
+	define( 'COMFORT_TEXTDOMAIN', basename( __DIR__ ) );
+}
 
 // Tear-up plugin and load all files in the include-directory.
 require_once 'bootstrap.php';
