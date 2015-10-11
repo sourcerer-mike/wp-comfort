@@ -28,15 +28,8 @@ class AutoloadTest extends TestCase {
 		// Given the loader is not registered
 		spl_autoload_unregister( $this->getSplTarget() );
 
-		// And the loader status is cleaned-up
-		$class = new \ReflectionClass( '\\Comfort\\Loader' );
-		$prop  = $class->getProperty( '_is_registered' );
-		$prop->setAccessible( true );
-		$prop->setValue( new Loader(), false );
-
-		$target = [ 'Comfort\\Loader', 'load_class' ];
-		$this->assertFalse( $prop->getValue( new Loader() ) );
-		$this->assertNotContains( $target, spl_autoload_functions() );
+		// And SPL is cleaned-up
+		$this->assertNotContains( $this->getSplTarget(), spl_autoload_functions() );
 	}
 
 	/**
