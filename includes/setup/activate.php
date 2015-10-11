@@ -3,32 +3,34 @@
  *
  */
 
-register_activation_hook(
-	COMFORT_FILE,
-	function () {
-		$version_option = basename( COMFORT_FILE, '.php' ) . '-version';
-		$version        = get_option(
-			$version_option,
-			'0.0.0'
-		);
+function comfort_activate() {
+	require_once ABSPATH . '/wp-admin/includes/plugin.php';
 
-		$data           = get_plugin_data( COMFORT_FILE );
-		$plugin_version = $data['Version'];
+	$version_option = basename( COMFORT_FILE, '.php' ) . '-version';
+	$version        = get_option(
+		$version_option,
+		'0.0.0'
+	);
 
-		foreach ( glob( __DIR__ . '/*-*.php' ) as $update_file ) {
-			$data = explode( '-', basename( $update_file ), 2 );
+	$data           = get_plugin_data( COMFORT_FILE );
+	$data           = apply_filters( 'plugin_data', $data );
+	$plugin_version = $data['Version'];
 
-			if ( version_compare( $data[0], $version ) <= 0 ) {
-				continue;
-			}
+	foreach ( glob( __DIR__ . '/*-*.php' ) as $update_file ) {
+		$data = explode( '-', basename( $update_file ), 2 );
 
-			if ( version_compare( $data[0], $plugin_version ) > 0 ) {
-				continue;
-			}
-
-			require $update_file;
-
-			update_option( $version_option, $data[0] );
+		if ( version_compare( $data[0], $version ) <= 0 ) {
+			continue;
 		}
+
+		if ( version_compare( $data[0], $plugin_version ) > 0 ) {
+			continue;
+		}
+
+		require $update_file;
+
+		update_option( $version_option, $data[0] );
 	}
-);
+}
+
+register_activation_hook( COMFORT_FILE, 'comfort_activate' );
