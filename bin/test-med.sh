@@ -5,7 +5,7 @@ testCode=0
 ./bin/test-min.sh
 testCode+=$?
 
-./bin/phpunit
+./bin/phpunit --coverage-text
 testCode+=$?
 
 exit ${testCode}

@@ -9,50 +9,29 @@ register_deactivation_hook(
 
 		$plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
 
-		check_admin_referer( "deactivate-plugin_{$plugin}" );
-
-		$activated = get_option( 'active_plugins' );
-
-		$cx_plugins = array();
-		$plugins    = get_plugins();
-		foreach ( $activated as $p ) {
-			if ( ! isset( $plugins[ $p ] ) ) {
-				// Not an installed plugin: ignore!
-				continue;
-			}
-
-			if ( $p == $plugin ) {
-				// It's this plugin itself: ignore!
-				continue;
-			}
-
-			if ( 0 !== strpos( $p, 'cx-' ) ) {
-				// Not a code-x plugin: ignore!
-				continue;
-			}
-
-			$append = $p;
-			if ( isset( $plugins[ $p ]['Name'] ) ) {
-				$append = $plugins[ $p ]['Name'];
-			}
-			$cx_plugins[] = $append;
+		if (PHP_SAPI != 'cli') {
+			check_admin_referer( "deactivate-plugin_{$plugin}" );
 		}
 
-		sort( $cx_plugins );
+		$dependencies = apply_filters( 'children_' . plugin_basename( COMFORT_FILE ), array() );
 
-		if ( $cx_plugins ) {
+		sort( $dependencies );
+
+		if ( $dependencies ) {
 			wp_redirect(
 				admin_url(
 					'plugins.php?' . http_build_query(
 						array(
 							'plugin'       => $plugin,
-							'dependencies' => $cx_plugins,
+							'dependencies' => $dependencies,
 						)
 					)
 				)
 			);
 
-			exit;
+			if (PHP_SAPI != 'cli') {
+				exit;
+			}
 		}
 	}
 );
@@ -88,6 +67,6 @@ add_action(
 		$target = str_replace( '"', "'", $target );
 
 		require_once __DIR__
-            . DIRECTORY_SEPARATOR . 'deactivate-error-notice.phtml';
+		             . DIRECTORY_SEPARATOR . 'deactivate-error-notice.phtml';
 	}
 );
