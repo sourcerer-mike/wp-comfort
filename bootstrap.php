@@ -11,7 +11,6 @@ if ( is_file( ABSPATH . '/vendor/autoload.php' ) ) {
 }
 
 // load own settings and autoload method
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'settings.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
 
 \Comfort\Loader::register_directory( __DIR__ );
