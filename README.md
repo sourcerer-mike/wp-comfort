@@ -21,7 +21,9 @@ Place all files in your plugins folder.
 
 ## API
 
-Install via composer and render it with phpdocumentor.
+Some documentation for the nerds:
+
+- [Version 1.0.* (latest)](http://sourcerer-mike.github.io/wp-comfort/api/1.0)
 
 ## Tests
 
