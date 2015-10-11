@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-./bin/phpunit
+testCode=0
+
+exit ${testCode}
