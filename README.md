@@ -17,7 +17,12 @@ some neat magic will come along:
 
 ## Installation
 
-Place all files in your plugins folder.
+### Via Composer
+
+[Get Composer and go](http://getcomposer.org):
+
+	composer require sourcerer-mike/wp-comfort
+	
 
 ## API
 

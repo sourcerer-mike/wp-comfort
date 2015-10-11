@@ -1,5 +1,5 @@
 {
-  "name": "sourcerer-mike/rmp-comfort",
+  "name": "sourcerer-mike/wp-comfort",
   "description": "More comfort for your page",
   "keywords": [ "WordPress", "comfort" ],
   "type": "wordpress-plugin",
@@ -12,7 +12,7 @@
     "bin/git-commit-theme-updates.sh"
   ],
   "require": {
-    "php": ">=5.3",
+    "php": ">=5.5",
     "composer/installers": ">=1.0"
   },
   "require-dev": {
