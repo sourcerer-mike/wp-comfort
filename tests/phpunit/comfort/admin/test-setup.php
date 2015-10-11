@@ -2,7 +2,9 @@
 
 namespace Comfort\Admin;
 
-class SetupTest extends \PHPUnit_Framework_TestCase {
+use Comfort\TestCase;
+
+class SetupTest extends TestCase {
 	public static $redirect_to = null;
 
 	protected function setUp() {
@@ -65,5 +67,36 @@ class SetupTest extends \PHPUnit_Framework_TestCase {
 		// Then it should redirect me
 		$this->assertNotNull( static::$redirect_to );
 		$this->assertContains( '/plugins.php?', static::$redirect_to );
+	}
+
+	/**
+	 * @backupGlobals
+	 */
+	public function test_admin_notices_show_dependencies() {
+		global $pagenow;
+
+		$backup_pagenow = $pagenow;
+
+		// Given I am on the backend "plugins.php"
+		$pagenow              = 'plugins.php';
+
+		// And collide with dependencies
+		$_GET['plugin']       = $this->getPluginBasename();
+		$_GET['dependencies'] = [
+			$this->getPluginBasename(),
+			md5( $this->getPluginBasename() )
+		];
+
+		// When I visit the page
+		ob_start();
+		comfort_deactivate_errors();
+		$content = ob_get_clean();
+
+		// Then I should see the errors
+		$this->assertNotEmpty( $content );
+		$this->assertContains( $this->getPluginBasename(), $content );
+		$this->assertContains( md5( $this->getPluginBasename() ), $content );
+
+		$pagenow = $backup_pagenow;
 	}
 }
