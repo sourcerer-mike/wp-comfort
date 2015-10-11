@@ -11,4 +11,11 @@ class GeneralTest extends \PHPUnit_Framework_TestCase {
 			get_plugins()
 		);
 	}
+
+	public function test_wp_coding_standards_for_class_files() {
+		$this->assertEquals(
+			'foo-bar/bar/baz/class-qux.php',
+			Loader::class_to_file('\\Foo_Bar\\Bar\\Baz\\Qux')
+		);
+	}
 }
