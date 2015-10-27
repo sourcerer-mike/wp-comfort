@@ -12,6 +12,7 @@ and dislike the missing OOP in WordPress.
 While enhancing WordPress with modern techniques
 some neat magic will come along:
 
+- Terms now can have meta values.
 - All Widgets will also be Shortcodes.
 - All Post-Types can be shown as a form in the Frontend.
 
@@ -33,7 +34,8 @@ some neat magic will come along:
 
 Some documentation for the nerds:
 
-- [Version 1.0.* (latest)](http://sourcerer-mike.github.io/wp-comfort/api/1.0)
+- [Version 1.1.* (latest)](http://sourcerer-mike.github.io/wp-comfort/api/1.1)
+- [Version 1.0.*](http://sourcerer-mike.github.io/wp-comfort/api/1.0)
 
 ## Tests
 
@@ -54,7 +56,7 @@ With PHP as supported by The PHP Group:
 - PHP 5.6
 - PHP 5.5 (until 2016-07-10)
 
-If you run other versions the rest assured that your site is old,
+If you run other versions then rest assured that your site is old,
 unstable
 and will be hacked soon.
 Contact me if you don't like that feeling: pretzlaw@gmail.com

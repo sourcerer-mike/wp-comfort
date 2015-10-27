@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Comfort
-Version: 1.0.0
+Version: 1.1.0
 Description: More comfort and security for your site.
 Author: Mike Pretzlaw
 Author URI: http://www.mike-pretzlaw.de
