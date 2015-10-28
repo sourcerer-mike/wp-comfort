@@ -24,19 +24,15 @@ function comfort_setup_term_meta() {
 	$sql = "CREATE TABLE {$table_name} (
         meta_id bigint(20) NOT NULL AUTO_INCREMENT,
         {$type}_id bigint(20) NOT NULL default 0,
-
         meta_key varchar(255) DEFAULT NULL,
         meta_value longtext DEFAULT NULL,
-
         UNIQUE KEY meta_id (meta_id)
     ) {$charset_collate};";
 
 	/** @var \wpdb $wpdb */
 	global $wpdb;
 
-	$wpdb->show_errors(false);
 	dbDelta( $sql );
-	$wpdb->show_errors();
 }
 
 return "comfort_setup_term_meta";
