@@ -9,7 +9,6 @@ use Comfort\TestCase;
  *
  * @package Comfort\Setup
  *
- * @covers ::comfort_setup_term_meta
  */
 class TermMetaTest extends TestCase {
 	public static function setUpBeforeClass() {
@@ -19,6 +18,8 @@ class TermMetaTest extends TestCase {
 	}
 
 	public function test_it_registeres_a_new_meta_table() {
+		comfort_setup_term_meta();
+
 		/** @var \wpdb $wpdb */
 		global $wpdb;
 
