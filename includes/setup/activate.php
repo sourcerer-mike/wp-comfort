@@ -6,7 +6,7 @@
 function comfort_activate() {
 	require_once ABSPATH . '/wp-admin/includes/plugin.php';
 
-	$version_option = basename( COMFORT_FILE, '.php' ) . '-version';
+	$version_option = basename( COMFORT_FILE, '.php' ) . '_version';
 	$version        = get_option(
 		$version_option,
 		'0.0.0'
@@ -29,7 +29,7 @@ function comfort_activate() {
 
 		require $update_file;
 
-		update_option( $version_option, $data[0] );
+		update_option( $version_option, $data[0], false );
 	}
 }
 

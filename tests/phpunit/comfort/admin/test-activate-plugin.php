@@ -38,7 +38,7 @@ class Activate_Plugin_Test extends TestCase {
 	 * @return string
 	 */
 	protected function getDbName() {
-		return basename( $this->getPluginBasename(), '.php' ) . '-version';
+		return basename( $this->getPluginBasename(), '.php' ) . '_version';
 	}
 
 	private function setUpDummyScript() {
