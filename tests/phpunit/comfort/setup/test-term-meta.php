@@ -9,10 +9,12 @@ use Comfort\TestCase;
  *
  * @package Comfort\Setup
  *
- *
+ * @covers ::comfort_setup_term_meta
  */
 class TermMetaTest extends TestCase {
 	public static function setUpBeforeClass() {
+		require_once COMFORT_DIR . '/includes/setup/1.1.0-term-meta.php';
+
 		parent::setUpBeforeClass();
 	}
 

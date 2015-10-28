@@ -39,4 +39,4 @@ function comfort_setup_term_meta() {
 	$wpdb->show_errors();
 }
 
-comfort_setup_term_meta();
+return "comfort_setup_term_meta";

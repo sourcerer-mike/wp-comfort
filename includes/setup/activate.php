@@ -27,7 +27,11 @@ function comfort_activate() {
 			continue;
 		}
 
-		require $update_file;
+		$callable = require $update_file;
+
+		if ( is_callable( $callable ) ) {
+			call_user_func( $callable );
+		}
 
 		update_option( $version_option, $data[0], false );
 	}
