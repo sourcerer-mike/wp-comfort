@@ -5,7 +5,8 @@ namespace Comfort\Admin;
 use Comfort\TestCase;
 
 class Activate_Plugin_Test extends TestCase {
-	private static $backup_version = false;
+	private static   $backup_version = false;
+	protected static $callable       = false;
 
 	public function filterPluginData( $data ) {
 		$data['Version'] = $this->getDummyVersion();
@@ -73,16 +74,21 @@ class Activate_Plugin_Test extends TestCase {
 		unlink( $this->getDummyScriptPathname() );
 	}
 
-	public function testItSkipsOldScripts() {
-		$oldScript = dirname( $this->getDummyScriptPathname() ) . '/0.0.0-test.php';
+	public function testItExecutesCallableReturnValues() {
+		static::$callable = false;
 
-		file_put_contents( $oldScript, '<?php throw new \\Exception();' );
+		file_put_contents(
+			$this->getDummyScriptPathname(),
+			'<?php return array("Comfort\\Admin\\Activate_Plugin_Test", "triggerCallable");'
+		);
 
 		comfort_activate();
 
-		$this->assertNotContains( $oldScript, get_included_files() );
+		$this->assertContains( $this->getDummyScriptPathname(), get_included_files() );
 
-		unlink( $oldScript );
+		$this->assertTrue( static::$callable );
+
+		static::$callable = false;
 	}
 
 	public function testItIgnoresScriptsNewerThanThePluginVersion() {
@@ -97,10 +103,26 @@ class Activate_Plugin_Test extends TestCase {
 		unlink( $newScript );
 	}
 
+	public function testItSkipsOldScripts() {
+		$oldScript = dirname( $this->getDummyScriptPathname() ) . '/0.0.0-test.php';
+
+		file_put_contents( $oldScript, '<?php throw new \\Exception();' );
+
+		comfort_activate();
+
+		$this->assertNotContains( $oldScript, get_included_files() );
+
+		unlink( $oldScript );
+	}
+
 	public function test_setup_scripts_are_rolled_out() {
 		comfort_activate();
 
 		$this->assertEquals( $this->getDummyVersion(), get_option( $this->getDbName() ) );
+	}
+
+	public static function triggerCallable() {
+		static::$callable = true;
 	}
 }
 
