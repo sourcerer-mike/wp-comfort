@@ -3,12 +3,11 @@
 namespace Comfort;
 
 $loader_class = __NAMESPACE__ . '\\Loader';
-if ( class_exists( __NAMESPACE__ . '\\Loader' ) ) {
-	$loader_class::register_directory( __DIR__ );
-
+if ( ! class_exists( __NAMESPACE__ . '\\Loader' ) ) {
 	return;
 }
 
+$loader_class::register_directory( __DIR__ . '/includes' );
 
 /**
  * Load files of classes via SPL.
