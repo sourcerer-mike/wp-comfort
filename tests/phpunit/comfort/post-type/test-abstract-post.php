@@ -63,10 +63,22 @@ class AbstractPostTest extends TestCase {
 		new Simple_Post( null );
 	}
 
-	public function test_it_creates_meta_object_when_class_exists() {
-		$comfort = $this->create_simple_post();
+	/**
+	 * @testdox Created meta objects are stored in the post object
+	 *          and reused to prevent performance issues.
+	 */
+	public function test_created_meta_objects_are_reused() {
+		$post = $this->create_simple_post();
 
-		$this->assertInstanceOf( '\\PHPUnit\\Comfort\\Test_Doubles\\Simple_Post\\Simple_Meta', $comfort->simple );
+		$key   = uniqid( 'foo' );
+		$value = uniqid();
+
+		// override buffer
+		$property = new \ReflectionProperty( $post, '_buffer' );
+		$property->setAccessible( true );
+		$property->setValue( $post, [ $key => $value ] );
+
+		$this->assertEquals( $value, $post->$key );
 	}
 
 	/**
@@ -80,5 +92,11 @@ class AbstractPostTest extends TestCase {
 		$this->assertInstanceOf( '\\WP_Post', $post );
 
 		return new Simple_Post( $post->ID );
+	}
+
+	public function test_it_creates_meta_object_when_class_exists() {
+		$comfort = $this->create_simple_post();
+
+		$this->assertInstanceOf( '\\PHPUnit\\Comfort\\Test_Doubles\\Simple_Post\\Simple_Meta', $comfort->simple );
 	}
 }
