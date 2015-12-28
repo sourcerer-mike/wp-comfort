@@ -9,6 +9,8 @@ $plugin_file = plugin_basename( dirname( __DIR__ ) . '/comfort.php' );
 deactivate_plugins( [ $plugin_file ] );
 activate_plugin( $plugin_file );
 
+\Comfort\Loader::register_directory( __DIR__ );
+
 // assert correct version after tests
 define( 'COMFORT_VERSION', get_site_option( 'comfort_version', '0.0.0' ) );
 

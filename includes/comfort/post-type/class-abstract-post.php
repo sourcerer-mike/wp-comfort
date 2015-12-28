@@ -27,6 +27,8 @@ abstract class Abstract_Post {
 		$meta_wrapper = get_class( $this ) . '\\' . ucfirst( $key ) . '_Meta';
 		if ( class_exists( $meta_wrapper ) ) {
 			$this->_buffer[ $key ] = new $meta_wrapper( $this->get_raw_post()->ID, $key );
+
+			return $this->_buffer[ $key ];
 		}
 
 		return $this->get_raw_post()->$key;

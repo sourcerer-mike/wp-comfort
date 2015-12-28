@@ -3,7 +3,8 @@
 namespace PHPUnit\Comfort\Post_Type;
 
 use Comfort\TestCase;
-use Comfort\Post_Type\Abstract_Post;
+use PHPUnit\Comfort\Post_Type\Abstract_Meta\Simple_Meta;
+use PHPUnit\Comfort\Test_Doubles\Simple_Post;
 
 class AbstractPostTest extends TestCase {
 	public function testItForwardsWPPostFields() {
@@ -22,7 +23,7 @@ class AbstractPostTest extends TestCase {
 		$this->assertInstanceOf( '\WP_Post', $post );
 
 		// And I turn it into a comfort post
-		$comfort_post = new SimplePost( $post->ID );
+		$comfort_post = new Simple_Post( $post->ID );
 
 		// And the meta key has no value
 		$meta_key = uniqid( 'some_meta_' );
@@ -49,7 +50,7 @@ class AbstractPostTest extends TestCase {
 		$post = current( $posts );
 		$this->assertInstanceOf( '\\WP_Post', $post );
 
-		$comfort = new SimplePost( $post->ID );
+		$comfort = new Simple_Post( $post->ID );
 
 		$this->assertEquals( $post, $comfort->get_raw_post() );
 	}
@@ -59,9 +60,25 @@ class AbstractPostTest extends TestCase {
 	 * @expectedExceptionMessage Post not found (ID=0)
 	 */
 	public function testItThrowsExceptionWhenPostIdIsIncorrect() {
-		new SimplePost( null );
+		new Simple_Post( null );
 	}
-}
 
-class SimplePost extends Abstract_Post {
+	public function test_it_creates_meta_object_when_class_exists() {
+		$comfort = $this->create_simple_post();
+
+		$this->assertInstanceOf( '\\PHPUnit\\Comfort\\Test_Doubles\\Simple_Post\\Simple_Meta', $comfort->simple );
+	}
+
+	/**
+	 * @return Simple_Post
+	 */
+	protected function create_simple_post() {
+		$posts = get_posts();
+		$this->assertNotNull( $posts );
+
+		$post = current( $posts );
+		$this->assertInstanceOf( '\\WP_Post', $post );
+
+		return new Simple_Post( $post->ID );
+	}
 }
