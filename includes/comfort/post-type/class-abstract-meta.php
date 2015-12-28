@@ -34,14 +34,16 @@ abstract class Abstract_Meta {
 	}
 
 	public function __set( $key, $value ) {
+		$key = $this->get_prefix() . '_' . $key;
+
 		return update_post_meta( $this->get_facade()->ID, $key, $value );
 	}
 
-	protected function get_prefix() {
+	public function get_prefix() {
 		return $this->_prefix;
 	}
 
-	protected function get_facade() {
+	public function get_facade() {
 		return $this->_facade;
 	}
 }
