@@ -1,7 +1,35 @@
 <?php
+/**
+ * Contains Abstract_Meta class.
+ *
+ * LICENSE: This source file is subject to the MIT license
+ * that is available through the world-wide-web at the following URI:
+ * https://opensource.org/licenses/MIT. If you did not receive a copy
+ * of the PHP License and are unable to obtain it through the web, please send
+ * a note to pretzlaw@gmail.com so we can mail you a copy immediately.
+ *
+ * @author    Mike Pretzlaw <pretzlaw@gmail.com>
+ * @copyright 2016 Mike Pretzlaw
+ * @license   http://github.com/sourcerer-mike/wp-comfort/LICENSE.md MIT License
+ * @link      http://github.com/sourcerer-mike/wp-comfort
+ */
 
 namespace Comfort\Post_Type;
 
+/**
+ * Abstract definition for meta groups.
+ *
+ * LICENSE: This source file is subject to the MIT license
+ * that is available through the world-wide-web at the following URI:
+ * https://opensource.org/licenses/MIT. If you did not receive a copy
+ * of the PHP License and are unable to obtain it through the web, please send
+ * a note to pretzlaw@gmail.com so we can mail you a copy immediately.
+ *
+ * @author    Mike Pretzlaw <pretzlaw@gmail.com>
+ * @copyright 2016 Mike Pretzlaw
+ * @license   http://github.com/sourcerer-mike/wp-comfort/LICENSE.md MIT License
+ * @link      http://github.com/sourcerer-mike/wp-comfort
+ */
 abstract class Abstract_Meta {
 
 	protected $_facade;
@@ -21,7 +49,7 @@ abstract class Abstract_Meta {
 		}
 
 		if ( null === $prefix ) {
-			$prefix = current(array_slice( explode( '\\', get_class( $this ) ), - 1 ));
+			$prefix = current( array_slice( explode( '\\', get_class( $this ) ), - 1 ) );
 			$prefix = strtolower( $prefix );
 			$prefix = preg_replace( '/_meta$/', '', $prefix );
 		}
