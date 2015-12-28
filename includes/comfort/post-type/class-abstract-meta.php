@@ -21,7 +21,9 @@ abstract class Abstract_Meta {
 		}
 
 		if ( null === $prefix ) {
-			$prefix = (string) array_slice( explode( '\\', get_class( $this ) ), - 1 );
+			$prefix = current(array_slice( explode( '\\', get_class( $this ) ), - 1 ));
+			$prefix = strtolower( $prefix );
+			$prefix = preg_replace( '/_meta$/', '', $prefix );
 		}
 
 		$this->_prefix = $prefix;
@@ -45,5 +47,9 @@ abstract class Abstract_Meta {
 
 	public function get_facade() {
 		return $this->_facade;
+	}
+
+	function __unset( $key ) {
+		delete_post_meta( $this->get_facade()->ID, $this->get_prefix() . '_' . $key );
 	}
 }
