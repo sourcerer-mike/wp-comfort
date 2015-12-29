@@ -26,6 +26,7 @@ Assertions before the release:
 - PHPUnit Code Coverage should be over 90% in Lines.
 - PHPUnit should have no incomplete tests.
 - PHPSemVer should not show any major change.
+- PHPCPD should not find duplicate code.
 
 And everything from patches.
 
@@ -34,5 +35,5 @@ And everything from patches.
 This harms no one.
 
 - PHPUnit Code Coverage should be over 80% in Lines.
-- PHPUnit should have no errors
+- PHPUnit should have no errors.
 - PHPSemVer should not show any minor change.
