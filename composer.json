@@ -17,6 +17,7 @@
   },
   "require-dev": {
     "mikey179/vfsStream": "1.6.*",
+    "phpmd/phpmd": "~2.3",
     "phpunit/phpunit": "4.8.*",
     "sami/sami": "3.1.*",
     "sourcerer-mike/phpsemver": "2.1.2",

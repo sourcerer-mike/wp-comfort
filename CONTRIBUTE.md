@@ -10,7 +10,8 @@ Those releases are incompatible with their previous.
 Migration is only guaranteed from one specific minor version.
 
 - Doc: There should be an API documentation.
-- PHPUnit: Code Coverage should be over 90% in Methods and Lines.
+- PHPMD should not have any errors.
+- PHPUnit Code Coverage should be over 90% in Methods and Lines.
 
 And everything from minor releases.
 
@@ -21,6 +22,7 @@ Such releases are compatible with their previous minor version.
 Assertions before the release:
 
 - `git branch -a --no-merge` should not contain features that are meant for the release.
+- PHPMD should not have any warnings.
 - PHPUnit Code Coverage should be over 90% in Lines.
 - PHPUnit should have no incomplete tests.
 - PHPSemVer should not show any major change.
