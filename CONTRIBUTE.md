@@ -9,7 +9,8 @@ Are made using semantic versions.
 Those releases are incompatible with their previous.
 Migration is only guaranteed from one specific minor version.
 
-- API
+- Doc: There should be an API documentation.
+- PHPUnit: Code Coverage should be over 90% in Methods and Lines.
 
 And everything from minor releases.
 
@@ -17,8 +18,12 @@ And everything from minor releases.
 
 Such releases are compatible with their previous minor version.
 
-- >90% Code Coverage
-- PHPUnit: No incomplete tests
+Assertions before the release:
+
+- `git branch -a --no-merge` should not contain features that are meant for the release.
+- PHPUnit Code Coverage should be over 90% in Lines.
+- PHPUnit should have no incomplete tests.
+- PHPSemVer should not show any major change.
 
 And everything from patches.
 
@@ -26,5 +31,6 @@ And everything from patches.
 
 This harms no one.
 
-- >80% Code Coverage
-- PHPUnit: No errors
+- PHPUnit Code Coverage should be over 80% in Lines.
+- PHPUnit should have no errors
+- PHPSemVer should not show any minor change.
