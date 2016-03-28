@@ -30,19 +30,19 @@ class Register_Post_Type_Test extends Abstract_Post_Type_Test {
 
 		$self = $this;
 
-		$this->_register_args_listener = function ( $args ) use ( $self ) {
-			$self::$registerArgs = $args;
+		$this->_register_args_listener = function ( $post_type, $args ) use ( $self ) {
+			$self::$registerArgs = (array) $args;
 
 			return $args;
 		};
 
-		add_filter( 'register_post_type_args', $this->_register_args_listener );
+		add_action( 'registered_post_type', $this->_register_args_listener, 10, 2 );
 
 		static::$registerArgs = [ ];
 	}
 
 	protected function tearDown() {
-		remove_filter( 'register_post_type_args', $this->_register_args_listener );
+		remove_action( 'registered_post_type', $this->_register_args_listener );
 		parent::tearDown();
 	}
 }
