@@ -2,7 +2,7 @@
 
 namespace Comfort\Admin;
 
-use Comfort\TestCase;
+use PHPUnit\Comfort\TestCase;
 
 class SetupTest extends TestCase {
 	public static $redirect_to = null;

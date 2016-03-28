@@ -2,7 +2,7 @@
 
 namespace Comfort\Admin;
 
-use Comfort\TestCase;
+use PHPUnit\Comfort\TestCase;
 
 class Activate_Plugin_Test extends TestCase {
 	private static   $backup_version = false;

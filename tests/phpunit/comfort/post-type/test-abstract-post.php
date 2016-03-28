@@ -2,9 +2,9 @@
 
 namespace PHPUnit\Comfort\Post_Type;
 
-use Comfort\TestCase;
 use PHPUnit\Comfort\Post_Type\Abstract_Meta\Simple_Meta;
 use PHPUnit\Comfort\Test_Doubles\Simple_Post;
+use PHPUnit\Comfort\TestCase;
 
 class AbstractPostTest extends TestCase {
 	public function testItForwardsWPPostFields() {

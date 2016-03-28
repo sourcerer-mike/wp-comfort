@@ -1,6 +1,6 @@
 <?php
 
-namespace Comfort;
+namespace PHPUnit\Comfort;
 
 class TestCase extends \PHPUnit_Framework_TestCase {
 	public function getPluginBasename() {

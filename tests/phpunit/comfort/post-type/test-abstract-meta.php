@@ -2,9 +2,9 @@
 
 namespace PHPUnit\Comfort\Post_Type;
 
-use Comfort\TestCase;
 use PHPUnit\Comfort\Test_Doubles\Simple_Post;
 use PHPUnit\Comfort\Test_Doubles\Simple_Post\Simple_Meta;
+use PHPUnit\Comfort\TestCase;
 
 class AbstractMetaTest extends TestCase {
 	public function test_it_determines_the_prefix_by_class_name() {

@@ -1,19 +1,12 @@
 <?php
 
-namespace Comfort;
+namespace PHPUnit\Comfort;
 
 require_once ABSPATH . '/wp-admin/includes/plugin.php';
 
 class GeneralTest extends TestCase {
 	public static $isDomainLoaded = false;
-
-	public function test_plugin_is_listed() {
-		$this->assertArrayHasKey(
-			plugin_basename( COMFORT_FILE ),
-			get_plugins()
-		)
-		;
-	}
+	protected     $_previous_screen;
 
 	public function testItWontFailOnDoubleLoad() {
 		$this->assertTrue( defined( 'COMFORT_DIR' ) );
@@ -31,7 +24,7 @@ class GeneralTest extends TestCase {
 			'plugin_locale',
 			function ( $locale, $domain ) {
 				if ( $domain == $this->getPluginTextdomain() ) {
-					\Comfort\GeneralTest::$isDomainLoaded = true;
+					GeneralTest::$isDomainLoaded = true;
 				}
 
 				return $locale;
@@ -43,6 +36,13 @@ class GeneralTest extends TestCase {
 		do_action( 'plugins_loaded' );
 
 		$this->assertTrue( static::$isDomainLoaded );
+	}
+
+	public function test_plugin_is_listed() {
+		$this->assertArrayHasKey(
+			plugin_basename( COMFORT_FILE ),
+			get_plugins()
+		);
 	}
 
 }

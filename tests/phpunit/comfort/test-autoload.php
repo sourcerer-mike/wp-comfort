@@ -1,7 +1,8 @@
 <?php
 
-namespace Comfort;
+namespace PHPUnit\Comfort;
 
+use Comfort\Loader;
 use org\bovigo\vfs\vfsStream;
 
 class AutoloadTest extends TestCase {
