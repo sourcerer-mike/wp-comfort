@@ -9,6 +9,7 @@ Are made using semantic versions.
 Those releases are incompatible with their previous.
 Migration is only guaranteed from one specific minor version.
 
+- Look up all `@deprecated` functions and remove them.
 - Doc: There should be an API documentation.
 - PHPUnit: Code Coverage should be over 90% in Methods and Lines.
 

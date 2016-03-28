@@ -14,6 +14,9 @@
  * @link      http://github.com/sourcerer-mike/wp-comfort
  */
 
+/**
+ * @deprecated 2.0.0 - This functionality will be removed without substitution.
+ */
 register_deactivation_hook(
 	COMFORT_FILE,
 	function () {
