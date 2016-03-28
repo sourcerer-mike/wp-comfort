@@ -61,6 +61,7 @@ namespace Comfort;
  * @see       http://www.kevinleary.net/wordpress-dashicons-list-custom-post-type-icons/ for menu_icon values
  */
 class Post_Type {
+	protected $_post_type = null;
 	/**
 	 * Callable for the "enter_title_here" filter.
 	 *
@@ -146,11 +147,14 @@ class Post_Type {
 		add_filter( 'enter_title_here', $this->_title_placeholder );
 	}
 
-
 	/**
 	 * @return string
 	 */
 	public function get_post_type() {
 		return (string) $this->_post_type;
+	}
+
+	public function to_array() {
+		return call_user_func( 'get_object_vars', $this );
 	}
 }

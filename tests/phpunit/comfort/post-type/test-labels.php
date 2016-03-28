@@ -5,9 +5,7 @@ namespace PHPUnit\Comfort\Post_Type;
 use Comfort\Post_Type;
 use PHPUnit\Comfort\TestCase;
 
-class Labels_Test extends TestCase {
-	protected $_previous_screen;
-
+class Labels_Test extends Abstract_Post_Type_Test {
 	public function testItCanRewordTheTitlePlaceholderInTheBackend() {
 		$post_type = new Post_Type( 'locations' );
 
@@ -78,26 +76,5 @@ class Labels_Test extends TestCase {
 		$this->assertNotEquals( 'Do not harm others', apply_filters( 'enter_title_here', '' ) );
 
 		$GLOBALS['current_screen']->post_type = $tmp;
-	}
-
-	protected function setUp() {
-		require_once ABSPATH . '/wp-admin/includes/screen.php';
-
-		global $current_screen;
-
-		$this->_previous_screen = get_current_screen();
-
-		$current_screen            = new \stdClass();
-		$current_screen->post_type = 'locations';
-	}
-
-	protected function tearDown() {
-		global $current_screen;
-
-		if ( ! $this->_previous_screen ) {
-			unset( $GLOBALS['current_screen'] );
-		}
-
-		$current_screen = $this->_previous_screen;
 	}
 }
