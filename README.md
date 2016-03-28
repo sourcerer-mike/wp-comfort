@@ -45,14 +45,16 @@ Some documentation for the nerds:
 This plugin supports all WordPress-Versions younger than a year
 (see [WP Versions](https://codex.wordpress.org/WordPress_Versions)):
 
-- WordPress 4.4 (coming December 2015)
+- WordPress 4.5 (coming 2016)
+- WordPress 4.4
 - WordPress 4.3
 - WordPress 4.2
-- WordPress 4.1 (until 2015-12-17)
+- WordPress 4.1
+- WordPress 4.0 (until 2016-09-04)
 
 With PHP as supported by The PHP Group:
 
-- PHP 7.0 (coming mid October 2015)
+- PHP 7.0
 - PHP 5.6
 - PHP 5.5 (until 2016-07-10)
 
