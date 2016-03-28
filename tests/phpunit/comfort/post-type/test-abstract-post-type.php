@@ -6,7 +6,9 @@ use Comfort\Post_Type;
 use PHPUnit\Comfort\TestCase;
 
 abstract class Abstract_Post_Type_Test extends TestCase {
-	protected $_previous_screen;
+	protected static $registerArgs = [ ];
+	protected        $_previous_screen;
+	protected        $_register_args_listener;
 
 	/**
 	 * @return Post_Type
@@ -30,6 +32,18 @@ abstract class Abstract_Post_Type_Test extends TestCase {
 		$current_screen->post_type = 'locations';
 
 		$GLOBALS['current_screen'] = $current_screen;
+
+		$self = $this;
+
+		$this->_register_args_listener = function ( $post_type, $args ) use ( $self ) {
+			$self::$registerArgs = (array) $args;
+
+			return $args;
+		};
+
+		add_action( 'registered_post_type', $this->_register_args_listener, 10, 2 );
+
+		static::$registerArgs = [ ];
 	}
 
 	protected function tearDown() {
@@ -40,5 +54,7 @@ abstract class Abstract_Post_Type_Test extends TestCase {
 		}
 
 		$current_screen = $this->_previous_screen;
+
+		remove_action( 'registered_post_type', $this->_register_args_listener );
 	}
 }

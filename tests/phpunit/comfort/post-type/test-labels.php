@@ -24,7 +24,11 @@ class Labels_Test extends Abstract_Post_Type_Test {
 		$this->assertContains( $singular, $target->labels );
 		$this->assertContains( $plural, $target->labels );
 
-		$this->markTestIncomplete( 'Check if labels are used by WordPress after registration' );
+		$target->register_post_type();
+
+		$this->assertArrayHasKey( 'labels', static::$registerArgs );
+		$this->assertContains( 'city', (array) static::$registerArgs['labels'] );
+		$this->assertContains( 'cities', (array) static::$registerArgs['labels'] );
 	}
 
 	public function testItSetsPlaceholderWhenNotAlreadySet() {
