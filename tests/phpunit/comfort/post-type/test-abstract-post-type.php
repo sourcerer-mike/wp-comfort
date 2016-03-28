@@ -16,8 +16,11 @@ abstract class Abstract_Post_Type_Test extends TestCase {
 	}
 
 	protected function setUp() {
-		require_once ABSPATH . '/wp-admin/includes/screen.php';
-		require_once ABSPATH . '/wp-admin/includes/class-wp-screen.php';
+		require_once ABSPATH . 'wp-admin/includes/screen.php';
+
+		if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-screen.php' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+		}
 
 		global $current_screen;
 
