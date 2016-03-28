@@ -26,7 +26,7 @@ some neat magic will come along:
 [Get Composer and go](http://getcomposer.org):
 
 	composer require sourcerer-mike/wp-comfort
-	
+
 
 ## API
 
@@ -52,7 +52,7 @@ This plugin supports all WordPress-Versions younger than a year
 - WordPress 4.1
 - WordPress 4.0 (until 2016-09-04)
 
-With PHP as supported by The PHP Group:
+With [PHP as supported by The PHP Group](http://php.net/supported-versions.php):
 
 - PHP 7.0
 - PHP 5.6
