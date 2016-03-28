@@ -61,7 +61,10 @@ namespace Comfort;
  * @see       http://www.kevinleary.net/wordpress-dashicons-list-custom-post-type-icons/ for menu_icon values
  */
 class Post_Type {
-	protected $_post_type = null;
+	/**
+	 * @var string Identifier of the post type (e.g. "product").
+	 */
+	protected $_post_type;
 	/**
 	 * Callable for the "enter_title_here" filter.
 	 *
@@ -76,6 +79,51 @@ class Post_Type {
 	 */
 	public function __construct( $post_type ) {
 		$this->_post_type = $post_type;
+	}
+
+	/**
+	 * Register the current post type.
+	 *
+	 * The **position in the menu** is mostly sorted alphabetically,
+	 * if a label is given (e.g. via `scaffold_labels`).
+	 * To determine the order take the first letter.
+	 * It's order will be the position in the alphabet plus 26,
+	 * which is below comments and above the first separator
+	 * (see https://codex.wordpress.org/Function_Reference/register_post_type#menu_position ).
+	 *
+	 * @see ::scaffold_labels
+	 */
+	public function register_post_type() {
+		$data = $this->to_array();
+
+		if ( ! isset( $data['menu_position'] )
+		     && isset( $this->labels )
+		     && isset( $this->labels['menu_name'] )
+		) {
+			$order = substr( ( $this->labels['menu_name'] ), 0, 1 );
+
+			$order = strtr(
+				strtolower( $order ),
+				array( 'ä' => 'a', 'ö' => 'o', 'ü' => 'u' )
+			);
+
+			$data['menu_position'] = ord( $order ) - 97 + 26;
+		} else if ( ! isset( $data['menu_position'] ) ) {
+			$data['menu_position'] = 30;
+		}
+
+		register_post_type( $this->get_post_type(), $data );
+	}
+
+	public function to_array() {
+		return call_user_func( 'get_object_vars', $this );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_post_type() {
+		return (string) $this->_post_type;
 	}
 
 	/**
@@ -143,18 +191,6 @@ class Post_Type {
 			return $placeholder_text;
 		};
 
-
 		add_filter( 'enter_title_here', $this->_title_placeholder );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_post_type() {
-		return (string) $this->_post_type;
-	}
-
-	public function to_array() {
-		return call_user_func( 'get_object_vars', $this );
 	}
 }

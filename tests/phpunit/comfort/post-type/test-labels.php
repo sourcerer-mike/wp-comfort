@@ -3,7 +3,6 @@
 namespace PHPUnit\Comfort\Post_Type;
 
 use Comfort\Post_Type;
-use PHPUnit\Comfort\TestCase;
 
 class Labels_Test extends Abstract_Post_Type_Test {
 	public function testItCanRewordTheTitlePlaceholderInTheBackend() {
