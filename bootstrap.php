@@ -47,7 +47,14 @@ if ( is_admin() ) {
 	require_once __DIR__ . '/includes/setup/deactivate.php';
 }
 
-// Fetch all files
+/**
+ * Fetch all files.
+ *
+ * This is following the best practices as described on
+ * https://developer.wordpress.org/plugins/the-basics/best-practices/#folder-structure .
+ * The "includes" directory contains all additional functionality.
+ * Remove files to make the plugin more lightweight for your customer / project.
+ */
 foreach ( glob( __DIR__ . '/includes/*' ) as $file_node ) {
 	$basename = basename( $file_node, '.php' );
 
