@@ -1,4 +1,17 @@
 <?php
+/**
+ * # Prefix for the post permalink.
+ *
+ * Add a prefix to posts only by filling out the "Blog post" field in the admin section "Permalinks".
+ *
+ * Once you changed the prefix it will be prepended to every link pointing on a post.
+ * Other post types are not affected by this prefix.
+ *
+ * NOTE: Redirect your old links to the posts otherwise they will be lost for search engines
+ * and others that link to your page.
+ * This feature does not pay attention what you changed when and if it would make sense.
+ * We always trust that you know what you do ;)
+ */
 
 /**
  * Show input field for additional permalink settings.
