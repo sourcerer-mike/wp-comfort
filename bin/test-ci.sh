@@ -8,6 +8,8 @@ authorMail=$(git --no-pager show -s --format="%aE" HEAD)
 wpPath="tmp/wp-${WP_VERSION}"
 pluginPath=${wpPath}/wp-content/plugins/${projectName}
 
+mkdir -p $wpPath
+
 ./bin/wp core download --path=${wpPath} --version=$WP_VERSION
 
 ./bin/wp --path=$wpPath core config \
